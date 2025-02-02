@@ -107,7 +107,7 @@ Did you expect this result?
 You might consider doing some research on Trinidad and Tobago to see why plastic waste per capita is so high there, or whether this is a data error.
 
 1.  Plot, using histograms, the distribution of plastic waste per capita faceted by continent. What can you say about how the continents compare to each other in terms of their plastic waste per capita?
-All the continents have at least one peak of the amount of plastic waste to the left, and the data is skewed to the right. The peak for Europe is bigger than the other peaks for the other continents, and the peak for SOuth America is the smallest peak, meaning South America has plastic waste in fewer countries. North America's data has an outlier where the plastic waste per capita is 3.6.
+All the continents have at least one peak of the amount of plastic waste to the left, and the data is skewed to the right. The peak for Europe is bigger than the other peaks for the other continents, and the peak for South America is the smallest peak, meaning South America has less plastic waste per capita. North America's data has an outlier where the plastic waste per capita is 3.6.
 
 ```{marginfigure}
 **NOTE:** From this point onwards the plots and the output of the code are not displayed in the lab instructions, but you can and should the code and view the results yourself.
@@ -170,7 +170,7 @@ The `color` and `fill` are based on the data so they go in aesthetics, but the `
 
 And yet another way to visualize this relationship is using side-by-side box plots.
 
-```{r plastic_waste_per_cap-box}
+```{r plastic_waste_per_cap-box, eval=TRUE}
 ggplot(data = plastic_waste, 
        mapping = aes(x = continent, 
                      y = plastic_waste_per_cap)) +
@@ -178,6 +178,13 @@ ggplot(data = plastic_waste,
 ```
 
 1.  Convert your side-by-side box plots from the previous task to [violin plots](http://ggplot2.tidyverse.org/reference/geom_violin.html). What do the violin plots reveal that box plots do not? What features are apparent in the box plots but not in the violin plots?
+The violin plots reveal the continents where plastic waste per capita is greater by their bulks. The box plots, however, features the median and quadrants for plastic waste per capita, and the violin plots don't show the medians.
+```{r plastic_waste_per_cap-violin, eval=TRUE}
+ggplot(data = plastic_waste, 
+       mapping = aes(x = continent, 
+                     y = plastic_waste_per_cap)) +
+  geom_violin()
+```
 
 ```{marginfigure}
 **Remember:** We use `geom_point()` to make scatterplots.
