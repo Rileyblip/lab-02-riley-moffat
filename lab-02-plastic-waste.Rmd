@@ -240,6 +240,7 @@ If you haven't had time to finish the exercises above, please ask for help befor
 ```
 
 1.  Recreate the following plot, and interpret what you see in context of the data.
+The data for the total population chart is pushed back as in less plastic waste per capita, unlike the coastal population proportion chart, where the data is more scattered with a wider range of plastic waste per capita.
 
 ```{r echo=FALSE, message=FALSE, eval=TRUE, warning=FALSE}
 plastic_waste %>% 
@@ -253,6 +254,21 @@ plastic_waste %>%
          y = "Plastic waste per capita ", 
          color = "Continent",
          title = "Plastic waste vs. coastal population proportion",
+         subtitle = "by continent") +
+    theme_minimal()
+```
+```{r echo=FALSE, message=FALSE, eval=TRUE, warning=FALSE}
+plastic_waste %>% 
+  mutate(coastal_pop_prop = coastal_pop / total_pop) %>%
+  filter(plastic_waste_per_cap < 3) %>%
+  ggplot(aes(x = total_pop, y = plastic_waste_per_cap, color = continent)) + 
+    geom_point() +
+    geom_smooth(color = "black") +
+    scale_color_viridis_d() +
+    labs(x = "Total Population", 
+         y = "Plastic waste per capita ", 
+         color = "Continent",
+         title = "Plastic waste vs. total population",
          subtitle = "by continent") +
     theme_minimal()
 ```
